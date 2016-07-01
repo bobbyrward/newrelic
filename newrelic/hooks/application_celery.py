@@ -19,7 +19,7 @@ from newrelic.api.transaction import current_transaction
 def CeleryTaskWrapper(wrapped, application=None, name=None):
 
     def wrapper(wrapped, instance, args, kwargs):
-        transaction = current_transaction()
+        transaction = current_transaction(active_only=False)
 
         if callable(name):
             # Start Hotfix v2.2.1.
